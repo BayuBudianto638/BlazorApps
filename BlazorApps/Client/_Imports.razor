@@ -1,0 +1,41 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.Extensions.Configuration
+@using Microsoft.Extensions.DependencyInjection
+@using Microsoft.Extensions.Localization
+@using Microsoft.JSInterop
+@using Client
+@using Shared
+@using Client.Shared
+@using Client.Pages.Authentication
+@using Client.Pages.Multitenancy
+@using Client.Components.Common
+@using Client.Components.EntityTable
+@using Client.Components.Localization
+@using Client.Components.Notifications
+@using Client.Components.ThemeManager
+@using Client.Infrastructure.ApiClient
+@using Client.Infrastructure.Auth
+@using Client.Infrastructure.Common
+@using Client.Infrastructure.Notifications
+@using Client.Infrastructure.Preferences
+@using Blazored.LocalStorage
+@using Mapster
+@using MediatR.Courier
+@using MudBlazor
+
+@attribute [Authorize]
+
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@inject IConfiguration Config
+@inject IClientPreferenceManager ClientPreferences

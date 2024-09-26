@@ -1,0 +1,44 @@
+﻿@page "/users/{Id}/department"
+@attribute [MustHavePermission(FSHAction.View, FSHResource.UserRoles)]
+
+@inject IStringLocalizer<ChangeDepartments> L
+
+<FshTitle Title="@_title" Description="@_description" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+
+{
+    <EditForm Model="@userDetailsDto" OnValidSubmit="SaveAsync">
+        
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => userDetailsDto.UserName)"  ReadOnly="true"  @bind-Value="userDetailsDto.UserName" Label="@L["User Name"]" />
+                    </MudItem>
+
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => userDetailsDto.Email)" ReadOnly="true" InputType="InputType.Email" @bind-Value="userDetailsDto.Email"
+                                  Label="@L["Email"]" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => userDetailsDto.PhoneNumber)" @bind-Value="userDetailsDto.PhoneNumber"
+                                  ReadOnly="true"  Label="@L["Phone Number"]" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudAutocomplete T="Guid" Label="@L["Department"]" For="@(() => userDetailsDto.DepartmentId)" @bind-Value="userDetailsDto.DepartmentId"
+                                     SearchFunc="@SearchDepartments" Variant="Variant.Filled" ToStringFunc="@GetDepartmentName" OffsetY="true" />
+                    </MudItem>
+                </MudGrid>
+           
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="Back" StartIcon="@Icons.Filled.Cancel">@L["Back"]</MudButton>
+
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Secondary" StartIcon="@Icons.Filled.Update">
+                    @L["Change Department"]
+                </MudButton>
+
+    </EditForm>
+}
+

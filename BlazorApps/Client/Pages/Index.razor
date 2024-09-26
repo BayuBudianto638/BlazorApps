@@ -1,0 +1,27 @@
+﻿@page "/home"
+@page "/"
+
+@inject IStringLocalizer<Index> L
+
+<MudContainer>
+    <MudGrid>
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center mt-4">
+                 <img src="full-stack-hero-logo.png" Style="height:250px" />
+            </div>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = default!;
+
+    public IEnumerable<Claim>? Claims { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthState;
+        Claims = authState.User.Claims;
+    }
+}

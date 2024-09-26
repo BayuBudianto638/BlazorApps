@@ -1,0 +1,19 @@
+﻿global using Blazored.LocalStorage;
+global using Client.Infrastructure.Common;
+global using Client.Infrastructure.Extensions;
+global using Client.Infrastructure.RoutesEndPoints;
+global using global::System;
+global using global::System.Collections.Generic;
+global using global::System.IO;
+global using global::System.Linq;
+global using global::System.Net.Http;
+global using global::System.Threading;
+global using global::System.Threading.Tasks;
+global using Microsoft.AspNetCore.Components.Authorization;
+global using Microsoft.Extensions.Configuration;
+global using Shared.Common;
+global using Shared.Wrapper;
+global using System.Net.Http.Headers;
+global using System.Security.Claims;
+global using System.Text.Json;
+

@@ -1,0 +1,7 @@
+{
+  "DatabaseSettings": {
+    "DBProvider": "mssql",
+    //"ConnectionString": "Data Source=LAPTOP-VKOK30HL\\SA2014;Initial Catalog=aj_blazor_solution; user id=sa; password=Pass@123; MultipleActiveResultSets=true"
+    "ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=aj_blazor_solution;Integrated Security=True;MultipleActiveResultSets=True"
+  }
+}

@@ -1,0 +1,63 @@
+﻿@page "/department"
+@using Client.Infrastructure.ApiClientManagers
+
+
+@attribute [MustHavePermission(FSHAction.View, FSHResource.Departments)]
+
+@inject IStringLocalizer<DepartmentDto> L
+@inject IDepartmentClient departmentClient
+
+<FshTitle Title="@L["Departments"]" Description="@L["Manage Departments."]" />
+
+<EntityTable TEntity="DepartmentDto" TId="Guid" TRequest="DepartmentCreateEdit" Context="@Context">
+     <ExtraActions>
+        <MudMenuItem OnClick="(() => DepartmentRole(context.Id))">@L["Manage Roles"]</MudMenuItem>
+       
+    </ExtraActions>
+    <EditFormContent>
+        <MudItem xs="12" md="6">
+            <MudTextField T="string" For="@(() => context.Name)" @bind-Value="context.Name" Label="@L["Name"]" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.Description)" @bind-Value="context.Description"
+                          Label="@L["Description"]" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudCheckBox @bind-Checked="@context.Status" Label="@L["Active?"]" Color="Color.Primary">
+            </MudCheckBox>
+        </MudItem>
+    </EditFormContent>
+</EntityTable>
+
+@code
+{
+    protected EntityServerTableContext<DepartmentDto, Guid, DepartmentCreateEdit> Context { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync() =>
+    Context = new(
+    fields: new()
+        {
+        //new(x => x.Id, L["Id"], "Id"),
+        new(x => x.Name, L["Name"], "Name"),
+            new(x => x.Description, L["Description"], "Description"),
+            new(x => x.Status, L["Active"], "Status", Type: typeof(bool)),
+        },
+    idFunc: x => x.Id,
+    searchFunc: async filter => (await
+    departmentClient.SearchAsync(filter.Adapt<ClientSearchRequest>())).Adapt<PaginationResponse<DepartmentDto>>(),
+    createFunc: async x => await departmentClient.CreateAsync(x.Adapt<DepartmentCreateEdit>()),
+    updateFunc: async (id, data) => await departmentClient.UpdateAsync(id, data),
+    deleteFunc: async id => await departmentClient.DeleteAsync(id),
+    entityName: L["Departments"],
+    entityNamePlural: L["Departments"],
+    entityResource: FSHResource.Departments,
+                searchAction: FSHAction.Search,
+                createAction: FSHAction.Create,
+                updateAction: FSHAction.Update,
+                deleteAction: FSHAction.Delete);
+
+
+                  private void DepartmentRole(in Guid id) =>
+            Navigation.NavigateTo($"/department/{id}/roles");
+
+}

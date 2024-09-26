@@ -1,0 +1,17 @@
+global using Application.Common.Models;
+global using global::Microsoft.AspNetCore.Builder;
+global using global::Microsoft.AspNetCore.Http;
+global using global::Microsoft.Extensions.DependencyInjection;
+global using global::System;
+global using global::System.Collections.Generic;
+global using global::System.IO;
+global using global::System.Linq;
+global using global::System.Net.Http;
+global using global::System.Threading;
+global using global::System.Threading.Tasks;
+global using Infrastructure.Auth.Permissions;
+global using Infrastructure.OpenApi;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using NSwag.Annotations;
+global using Shared.Authorization;

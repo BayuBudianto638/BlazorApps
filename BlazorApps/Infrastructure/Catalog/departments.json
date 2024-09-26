@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "ca43337c-c9bc-4c18-98e1-3bf8694f9fb7",
+    "Name": "Root Admin",
+    "Description": "Root Admin Users",
+    "Status": true
+  },
+  {
+    "Id": "538f5ce7-9bd4-4309-8e62-6e566b01fdfe",
+    "Name": "Basic",
+    "Description": "Basic Users",
+    "Status": true
+  }
+]
